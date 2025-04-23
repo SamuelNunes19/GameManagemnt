@@ -1,0 +1,65 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+
+    <ion-title>Game Management</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button fill="clear" [routerLink]="['/profile']">
+        <ion-avatar slot="icon-only">
+          <img src="assets/icon/user.jpg" alt="User" />
+        </ion-avatar>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-searchbar [(ngModel)]="searchText" placeholder="Search..."></ion-searchbar>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" size-md="4" *ngFor="let game of filteredGames">
+      <!-- For every game in the list create a card in the grid -->
+        
+        <ion-card>
+          <!--it shows the image and if image is not found it shows a default one-->
+          <img [src]="game.background_image || 'assets/icon/default-game.jpg'" alt="Game Image" />
+          <ion-card-header>
+            <ion-card-title>{{ game.name }}</ion-card-title>
+            <ion-card-content> 
+              <div *ngFor="let p of game.platforms">
+                {{p.platform.name}}
+              </div>
+
+              <div 
+              class="playedd" 
+              [class.active]="isGamePlayed(game)" 
+              (click)="togglePlayed(game)">
+              <h1>Games Played</h1>
+            </div>
+               
+            <div 
+            class="hearticon" 
+            [class.active]="isGameSaved(game)" 
+            (click)="toggleSave(game)">
+          </div>
+
+          <div 
+          class="Playingg" 
+          [class.active]="isPlayingGames(game)" 
+          (click)="togglePlaying(game)">
+          <h2>Still Playing</h2>
+        </div>
+
+              
+            </ion-card-content>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+ 
+</ion-content>

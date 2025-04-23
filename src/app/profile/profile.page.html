@@ -1,0 +1,62 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>profile</ion-title>
+    <ion-button slot ="start">
+      <ion-back-button></ion-back-button>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="profile-container">
+    <div class="avatar-wrapper">
+      <img src="assets/icon/user.jpg" alt="User Avatar" class="avatar-image" />
+    </div>
+<!--display 3 categories-->
+    <div class="info-row">
+      <div class="info-box">
+        <div class="info-title">Saved Games</div>
+        <h3>Saved: {{ savedCount }}</h3>
+        <div class="circle-icon"></div>
+      </div>
+      <div class="info-box">
+        <div class="info-title">Games Played</div>
+        <h4> Played games: {{playedCount}}</h4>
+        <div class="circle-icon"></div>
+      </div>
+      <div class="info-box">
+        <div class="info-title">Playing</div>
+        <h5>Playing:{{playingCount}}</h5>
+        <div class="circle-icon"></div>
+      </div>
+    </div>
+  </div>
+<!--display the 3 categories but now with game names-->
+<div class="gamelist">
+  <h2>Saved Games</h2>
+  <ion-list>
+    <ion-item *ngFor="let game of savedGames">
+      <ion-label>{{ game.name }}</ion-label>
+    </ion-item>
+  </ion-list>
+</div>
+
+<div class="gamelist">
+  <h2>Played Games</h2>
+  <ion-list>
+    <ion-item *ngFor="let game of playedGames">
+      <ion-label>{{ game.name }}</ion-label>
+    </ion-item>
+  </ion-list>
+</div>
+
+<div class="gamelist">
+  <h2>Currently Playing</h2>
+  <ion-list>
+    <ion-item *ngFor="let game of playingGames">
+      <ion-label>{{ game.name }}</ion-label>
+    </ion-item>
+  </ion-list>
+</div>
+
+</ion-content>
